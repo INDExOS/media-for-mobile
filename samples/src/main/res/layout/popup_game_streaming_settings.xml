@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="0dp"
+    android:orientation="vertical"
+    android:paddingLeft="12dp">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="Capture method:"/>
+
+        <Spinner
+                android:id="@+id/renderMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:spinnerMode="dialog">
+        </Spinner>
+
+        <TextView android:text="Host"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:text="@string/streaming_server_default_ip"
+                  android:id="@+id/host"
+                  android:singleLine="true"
+                  android:ellipsize="start" />
+
+        <TextView android:text="Port"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:inputType="number"
+                  android:text="@string/streaming_server_default_port"
+                  android:id="@+id/port"
+                  android:singleLine="true" />
+
+        <TextView android:text="Application Name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:text="@string/streaming_server_default_app"
+                  android:id="@+id/applicationName"
+                  android:singleLine="true" />
+
+        <TextView android:text="Stream Name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:text="@string/streaming_server_default_stream"
+                  android:id="@+id/streamName"
+                  android:singleLine="true" />
+
+    </LinearLayout>
+
+</LinearLayout>

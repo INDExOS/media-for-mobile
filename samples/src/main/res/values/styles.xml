@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ActivityBackground">
+        <item name="android:background">@drawable/activity_background</item>
+    </style>
+
+    <style name="TimelineItemBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:background">@drawable/timeline_item_bar_background</item>
+    </style>
+
+    <style name="TimelineItemButton">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+    </style>
+
+    <style name="TimelineItemOpenButton" parent="TimelineItemButton">
+        <item name="android:src">@drawable/ic_open</item>
+        <item name="android:background">@drawable/timeline_item_button_background</item>
+    </style>
+
+    <style name="TimelineItemDeleteButton" parent="TimelineItemButton">
+        <item name="android:src">@drawable/ic_delete</item>
+        <item name="android:background">@drawable/timeline_item_button_background</item>
+    </style>
+
+    <style name="TimelineItemTitle" parent="TimelineItemButton">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="ToolBar">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/background_toolbar</item>
+        <item name="android:paddingRight">0dp</item>
+
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="VideoPlayerView">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="PlayButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:src">@drawable/button_play</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+    </style>
+
+    <style name="PauseButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:src">@drawable/button_pause</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+    </style>
+
+    <style name="PlayProgress" parent="@android:style/Widget.SeekBar">
+        <item name="android:progressDrawable">@drawable/progress_play</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_play</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:thumb">@drawable/progress_play_thumb</item>
+        <item name="android:thumbOffset">12dp</item>
+        <item name="android:max">100</item>
+        <item name="android:progress">50</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="PlayTimeText">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="IndicatorBox" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">240dip</item>
+        <item name="android:layout_height">120dip</item>
+        <item name="android:textColor">#ffffff00</item>
+        <item name="android:background">#66003300</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="RoundButton">
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+    </style>
+
+    <style name="RoundFocusRect">
+        <item name="android:background">@drawable/round_focus_rect</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+    </style>
+
+    <style name="RoundBorderButton">
+        <item name="android:background">@drawable/round_border_button</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+    </style>
+
+    <style name="SettingsButton" parent="RoundBorderButton">
+        <item name="android:src">@drawable/settings</item>
+    </style>
+
+    <style name="CameraChangeButton" parent="RoundBorderButton">
+        <item name="android:src">@drawable/change_camera</item>
+    </style>
+
+    <style name="BrowseButton" parent="RoundBorderButton">
+        <item name="android:src">@drawable/ic_open</item>
+    </style>
+
+    <style name="RecordActiveButton" parent="RoundButton">
+        <item name="android:src">@drawable/rec_act</item>
+    </style>
+
+    <style name="RecordInactive" parent="RoundButton">
+        <item name="android:src">@drawable/rec_inact</item>
+    </style>
+
+    <style name="PreviewButton">
+        <item name="android:background">@drawable/round_rect</item>
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_height">96dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="EffectsList">
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/bar_background</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="EffectButton">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:background">@drawable/timeline_item_button_background</item>
+    </style>
+
+    <!--
+    <style name="PreviewButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:background">@drawable/timeline_item_button_background</item>
+    </style>
+    -->
+
+    <!-- Popup Styles -->
+
+    <style name="Popups" />
+
+    <!-- Down -->
+    <style name="Popups.Down" />
+
+    <style name="Popups.Down.Left">
+        <item name="@android:windowEnterAnimation">@anim/show_tl_to_br</item>
+        <item name="@android:windowExitAnimation">@anim/hide_br_to_tl</item>
+    </style>
+
+    <style name="Popups.Down.Right">
+        <item name="@android:windowEnterAnimation">@anim/show_tr_to_bl</item>
+        <item name="@android:windowExitAnimation">@anim/hide_bl_to_tr</item>
+    </style>
+
+    <!-- Up -->
+    <style name="Popups.Up" />
+
+    <style name="Popups.Up.Left">
+        <item name="@android:windowEnterAnimation">@anim/show_bl_to_tr</item>
+        <item name="@android:windowExitAnimation">@anim/hide_tr_to_bl</item>
+    </style>
+
+    <style name="Popups.Up.Right">
+        <item name="@android:windowEnterAnimation">@anim/show_br_to_tl</item>
+        <item name="@android:windowExitAnimation">@anim/hide_tl_to_br</item>
+    </style>
+
+</resources>

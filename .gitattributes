@@ -1,0 +1,45 @@
+# default behaviour
+* text=auto
+
+# files to be stored and checked out with LF endings
+*.h text eol=lf
+*.hpp text eol=lf
+*.c text eol=lf
+*.cc text eol=lf
+*.cpp text eol=lf
+*.java text eol=lf
+*.cl text eol=lf
+*.cs text eol=lf
+*.sh text eol=lf
+*.texi text eol=lf
+*.map text eol=lf
+Makefile text eol=lf
+*/Makefile text eol=lf
+
+# files to be stored and checked out with CRLF endings
+*.vcxproj text eol=crlf
+*.vcproj text eol=crlf
+*.csproj text eol=crlf
+*.vsprops text eol=crlf
+*.props text eol=crlf
+*.xaml text eol=crlf
+*.appxmanifest text eol=crlf
+*.sln text eol=crlf
+*.rc text eol=crlf
+*.def text eol=crlf
+*.txt text eol=crlf
+*.bat text eol=crlf
+
+# binary files which should not be modified
+*.rtf binary
+*.doc binary
+*.docx binary
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.bmp binary
+
+# paths which should be ignored by git-archive
+.gitattributes export-ignore
+.gitignore export-ignore

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:keepScreenOn="true">
+
+    <org.m4m.samples.controls.GameGLSurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/fps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="8dp"
+        android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="8dp"
+            android:textSize="20sp"/>
+
+    <ImageButton
+            android:id="@+id/settings"
+            style="@style/SettingsButton"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="center"
+            android:onClick="showSettings"/>
+
+    <ImageButton
+            android:id="@+id/preview"
+            style="@style/PreviewButton"
+            android:onClick="playPreview"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"/>
+
+    <ImageButton
+            android:id="@+id/startCapturing"
+            style="@style/RecordInactive"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:scaleType="center"
+            android:onClick="clickToggleCapturing"/>
+
+</RelativeLayout>

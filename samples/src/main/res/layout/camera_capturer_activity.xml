@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:keepScreenOn="true"
+                android:id="@+id/camera_layout">
+
+    <LinearLayout
+        android:id="@+id/settingsField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <ImageButton
+                android:id="@+id/settings"
+                style="@style/SettingsButton"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="18dp"
+                android:scaleType="center"
+                android:onClick="showSettings"/>
+
+        <CheckBox
+            android:id="@+id/muteCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:text="Mute"
+            android:button="@null"
+            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+            android:checked="false"/>
+
+    </LinearLayout>
+
+    <ImageButton
+            android:id="@+id/change_camera"
+            style="@style/CameraChangeButton"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:scaleType="center"
+            android:onClick="changeCamera"/>
+
+    <ImageView
+            android:id="@+id/focus_rect"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:scaleType="center"
+            style="@style/RoundFocusRect" android:visibility="invisible"/>
+
+    <ImageButton
+            android:id="@+id/preview"
+            style="@style/PreviewButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"/>
+
+    <ImageButton
+            android:id="@+id/streaming"
+            style="@style/RecordInactive"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:scaleType="center"
+            android:onClick="toggleStreaming"
+            android:adjustViewBounds="true"/>
+
+    <ScrollView
+            android:id="@+id/effectsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            style="@style/EffectsList"
+            android:animateLayoutChanges="true">
+
+        <LinearLayout
+                android:id="@+id/effectsList"
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <ImageButton
+                    android:id="@+id/effect_no"
+                    style="@style/EffectButton"
+                    android:src="@drawable/effect_no"
+                    android:tag="0"
+                    android:onClick="onClickEffect"/>
+
+            <ImageButton
+                    android:id="@+id/effect_gray"
+                    style="@style/EffectButton"
+                    android:tag="1"
+                    android:src="@drawable/effect_gray"
+                    android:onClick="onClickEffect"/>
+
+            <ImageButton
+                    android:id="@+id/effect_sepia"
+                    style="@style/EffectButton"
+                    android:tag="2"
+                    android:src="@drawable/effect_sepia"
+                    android:onClick="onClickEffect"/>
+
+            <ImageButton
+                    android:id="@+id/effect_invert"
+                    style="@style/EffectButton"
+                    android:tag="3"
+                    android:src="@drawable/effect_invert"
+                    android:onClick="onClickEffect"/>
+
+            <ImageButton
+                    android:id="@+id/effect_text"
+                    style="@style/EffectButton"
+                    android:tag="4"
+                    android:src="@drawable/effect_text"
+                    android:onClick="onClickEffect"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/fpsText" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white" android:textSize="20dp"/>
+
+</RelativeLayout>

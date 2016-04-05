@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Media for Mobile</string>
+    <string name="warning_empty_gallery">Gallery is Empty</string>
+
+    <string name="button_text_start">Start</string>
+    <string name="button_text_stop">Stop</string>
+    <string name="image_button_play">Start playing button.</string>
+
+    <string name="streaming_server_default_ip">10.125.226.116</string>
+    <string name="streaming_server_default_port">1935</string>
+    <string name="streaming_server_default_app">live</string>
+    <string name="streaming_server_default_stream">mp4:test</string><string name="grayscale_text">grayscale</string>
+
+    <!-- for cameraFilter_spinner; match with CameraCaptureActivity constants -->
+    <string-array name="effects_names">
+        <item>No effect</item>
+        <item>Grayscale</item>
+        <item>Inverse</item>
+        <item>Sepia</item>
+        <item>Text</item>
+    </string-array>
+
+    <!-- for frameSize_spinner -->
+    <string-array name="frame_size_values">
+        <item>640 x 480</item>
+        <item>1024 x 768</item>
+        <item>1280 x 720</item>
+    </string-array>
+
+    <!-- for videoBitRate_spinner -->
+    <string-array name="video_bit_rate_values">
+        <item>5000</item>
+        <item>4000</item>
+        <item>3000</item>
+        <item>2000</item>
+        <item>1000</item>
+    </string-array>
+
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="open">Open</string>
+
+    <string name="transcode_video">Transcode Video</string>
+    <string name="join_video">Join Video</string>
+    <string name="cut_video">Cut Video</string>
+    <string name="video_effect">Video Effect</string>
+    <string name="audio_effect">Audio Effect</string>
+    <string name="media_file_info">Media File Info</string>
+    <string name="time_scaling">Time Scaling</string>
+
+    <string name="camera_streaming">Camera Streaming</string>
+    <string name="game_streaming">Game Streaming</string>
+    <string name="media_file_streaming">Media File Streaming</string>
+    <string name="play_video_stream">Play Video Stream</string>
+
+    <string name="game_capturing">Game Capturing</string>
+    <string name="camera_capturing">Camera Capturing</string>
+
+    <string name="content_recognition">Content Recognition</string>
+
+    <string name="video">Video Processing</string>
+    <string name="streaming">Streaming</string>
+    <string name="capturing">Capturing</string>
+    <string name="recognition">Recognition</string>
+
+    <string name="listening_for_audio">Listening for audio...</string>
+
+</resources>

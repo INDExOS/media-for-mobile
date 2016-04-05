@@ -1,0 +1,36 @@
+*~
+# VS intermediate files
+*.sdf
+*.suo
+*.ncb
+*.user
+_build
+*.pdb
+*.obj
+*.log
+*.lib
+*.dll
+*.exp
+*.ilk
+*.class
+*.opensdf
+*.dgml
+*.ipch
+bin/
+gen/
+TestResults/
+Debug/
+build
+# CMake intermidiate files
+__cmake
+# Mac OS system files
+*.mode1v3
+*.perspectivev3
+*.pbxuser
+*xcuserdata*
+.DS_Store
+build/
+
+*.pd_
+*.opensdf
+*.publictoken

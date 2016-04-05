@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <VideoView
+            android:id="@+id/video_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_margin="1dp" />
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/toggleButtonStart"
+            android:layout_margin="8dp" />
+
+    <ToggleButton
+            android:id="@+id/toggleButtonStart"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:textOn="@string/button_text_stop"
+            android:textOff="@string/button_text_start"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

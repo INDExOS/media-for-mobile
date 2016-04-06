@@ -1,0 +1,37 @@
+1. Fork the M4M repository on GitHub and clone your fork to your development environment:
+	git clone git@github.com:YOUR-USERNAME/media-for-mobile.git
+
+2. Add the main M4M repository as an additional git remote called "upstream". 
+Change to the directory where you cloned M4M (normally it's media-for-mobile) and enter the following command:
+	git remote add upstream git://github.com/M4M/media-for-mobile.git
+
+3. Create an issue for the thing you are working on if it requires significant effort to fix.
+
+4. Fetch the latest code from M4M master:
+	git fetch upstream
+
+5. Create a new branch for your feature based on the current M4M master branch. Each separate bug fix or change should go in its own branch.
+	git checkout upstream/master
+	git checkout -b <issue-number-branch-name>
+
+6. Write your code.
+
+7. Validate your changes and ensure that there is no regression in existing functionality using M4M sample application
+
+8. Commit your changes:
+	git commit -m "A brief description of this change"
+
+9. Pull the latest code from upstream into your branch to ensure you have the latest code in your branch before you open your pull request:
+	git pull upstream master
+
+10. After resolving all conflicts, push your code to the GitHub:
+	git push -u origin <issue-number-branch-name>
+
+11. Open a pull request against upstream. Go to your repository on GitHub and click "Pull Request", choose your branch and enter details in the comment box.
+
+12. M4M repository maintainers will review your code. If your code is accepted, it will be merged into M4M master branch
+
+13. After your code was either accepted or declined you can delete branches you've worked with from your local repository and origin:
+	git checkout master
+	git branch -D <issue-number-branch-name>
+	git push origin --delete <issue-number-branch-name>

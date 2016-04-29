@@ -34,3 +34,7 @@ build/
 *.pd_
 *.opensdf
 *.publictoken
+.gradle/**
+local.properties
+*.iml
+.idea/**

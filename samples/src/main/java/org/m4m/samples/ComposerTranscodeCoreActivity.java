@@ -16,19 +16,27 @@
 
 package org.m4m.samples;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaCodecInfo;
-import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.*;
+import android.view.SurfaceHolder;
+import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.m4m.android.AndroidMediaObjectFactory;
 import org.m4m.android.AudioFormatAndroid;
+import org.m4m.android.Utils;
 import org.m4m.android.VideoFormatAndroid;
 import org.m4m.domain.ISurfaceWrapper;
 import org.m4m.samples.controls.TranscodeSurfaceView;
@@ -396,30 +404,10 @@ public class ComposerTranscodeCoreActivity extends ActivityWithTimeline implemen
         mediaComposer.setTargetAudioFormat(aFormat);
     }
 
-    private static int getVideoRotationDegrees(Context context, Uri videoUri) {
-        if(context == null || videoUri == null) {
-            return -0;
-        }
-        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        try {
-            retriever.setDataSource(context, videoUri);
-        } catch (IllegalArgumentException | SecurityException e) {
-            return -0;
-        } catch (RuntimeException e) {
-            return -0;
-        }
-
-        String rotation = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
-        if (rotation == null) {
-            return -0;
-        }
-        return Integer.parseInt(rotation);
-    }
-
     protected void setTranscodeParameters(org.m4m.MediaComposer mediaComposer) throws IOException {
 
         mediaComposer.addSourceFile(mediaUri1);
-        int orientation = this.getVideoRotationDegrees(this, Uri.parse(mediaUri1.getString()));
+        int orientation = Utils.getVideoRotationDegrees(this, Uri.parse(mediaUri1.getString()));
         mediaComposer.setTargetFile(dstMediaPath, orientation);
 
         configureVideoEncoder(mediaComposer, videoWidthOut, videoHeightOut);

@@ -141,7 +141,17 @@ public class MediaComposer implements Serializable {
      * @throws IOException when the file name is invalid or the file can not be opened.*
      */
     public void setTargetFile(String fileName) throws IOException {
-        this.sink = factory.createSink(fileName, progressListener, progressTracker);
+        this.setTargetFile(fileName, 0);
+    }
+
+    /**
+     * Sets the target file.
+     *
+     * @param fileName Absolute path to the target file. String class object.
+     * @throws IOException when the file name is invalid or the file can not be opened.*
+     */
+    public void setTargetFile(String fileName, int orientationHint) throws IOException {
+        this.sink = factory.createSink(fileName, orientationHint, progressListener, progressTracker);
     }
 
     /**

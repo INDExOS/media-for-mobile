@@ -174,7 +174,7 @@ public class AndroidMediaObjectFactoryFake implements IAndroidMediaObjectFactory
     }
 
     @Override
-    public Render createSink(String fileName, org.m4m.IProgressListener progressListener, ProgressTracker progressTracker) throws IOException {
+    public Render createSink(String fileName, int orientationHint, org.m4m.IProgressListener progressListener, ProgressTracker progressTracker) throws IOException {
         if (sink == null) {
             if (muxer == null)
                 muxer = create.mediaMuxer().construct();

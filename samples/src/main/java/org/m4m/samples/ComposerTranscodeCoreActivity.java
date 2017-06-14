@@ -16,9 +16,11 @@
 
 package org.m4m.samples;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaCodecInfo;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.*;
@@ -394,10 +396,31 @@ public class ComposerTranscodeCoreActivity extends ActivityWithTimeline implemen
         mediaComposer.setTargetAudioFormat(aFormat);
     }
 
+    private static int getVideoRotationDegrees(Context context, Uri videoUri) {
+        if(context == null || videoUri == null) {
+            return -0;
+        }
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            retriever.setDataSource(context, videoUri);
+        } catch (IllegalArgumentException | SecurityException e) {
+            return -0;
+        } catch (RuntimeException e) {
+            return -0;
+        }
+
+        String rotation = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
+        if (rotation == null) {
+            return -0;
+        }
+        return Integer.parseInt(rotation);
+    }
+
     protected void setTranscodeParameters(org.m4m.MediaComposer mediaComposer) throws IOException {
 
         mediaComposer.addSourceFile(mediaUri1);
-        mediaComposer.setTargetFile(dstMediaPath);
+        int orientation = this.getVideoRotationDegrees(this, Uri.parse(mediaUri1.getString()));
+        mediaComposer.setTargetFile(dstMediaPath, orientation);
 
         configureVideoEncoder(mediaComposer, videoWidthOut, videoHeightOut);
         configureAudioEncoder(mediaComposer);

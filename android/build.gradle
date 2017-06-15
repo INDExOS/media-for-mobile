@@ -3,7 +3,6 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
@@ -36,4 +35,4 @@ dependencies {
 }
 
 version = android.defaultConfig.versionName
-group = "org.wordpress"
+group = "org.m4a"

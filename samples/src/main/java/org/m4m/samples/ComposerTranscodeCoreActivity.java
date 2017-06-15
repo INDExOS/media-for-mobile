@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import org.m4m.android.AndroidMediaObjectFactory;
 import org.m4m.android.AudioFormatAndroid;
-import org.m4m.android.Utils;
 import org.m4m.android.VideoFormatAndroid;
 import org.m4m.domain.ISurfaceWrapper;
 import org.m4m.samples.controls.TranscodeSurfaceView;
@@ -407,7 +406,7 @@ public class ComposerTranscodeCoreActivity extends ActivityWithTimeline implemen
     protected void setTranscodeParameters(org.m4m.MediaComposer mediaComposer) throws IOException {
 
         mediaComposer.addSourceFile(mediaUri1);
-        int orientation = Utils.getVideoRotationDegrees(this, Uri.parse(mediaUri1.getString()));
+        int orientation = mediaFileInfo.getRotation();
         mediaComposer.setTargetFile(dstMediaPath, orientation);
 
         configureVideoEncoder(mediaComposer, videoWidthOut, videoHeightOut);

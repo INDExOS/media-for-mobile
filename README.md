@@ -25,6 +25,37 @@ Run "gradle build" command to build the Media for Mobile library and the samples
 
 To use the Media for Mobile components in your project, add dependencies on "android", "domain" and "effects" M4M folders to your gradle build scripts.
 
+
+
+**Jitpack.io Integration**
+
+Mobile 4 Media uses JitPack to provide ready-to-use artifacts of any branch or commit.
+
+1. Add the JitPack repository to your project's root build.gradle:
+```
+ allprojects {
+     repositories {
+         jcenter()
+         maven { url "https://jitpack.io" }
+     }
+ }
+```
+
+ 2. Add the M4M dependency to your module-level build.gradle:
+```
+ dependencies {
+     compile 'com.github.indexOS.media-for-mobile:android:master-SNAPSHOT'
+ }
+ ```
+
+You can instead point to any commit hash permanently using:
+```
+ dependencies {
+     compile 'com.github.indexOS.media-for-mobile:android:fd9f7c56cfab63eee2ac3ea5a8b222a54cb7f9fc'
+ }
+ ```
+
+
 List of Media for Mobile samples
 ---------------------------------
 

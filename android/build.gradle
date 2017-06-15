@@ -1,4 +1,15 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 25
@@ -23,3 +34,6 @@ dependencies {
     compile project(':domain')
     testCompile 'junit:junit:4.12'
 }
+
+version = android.defaultConfig.versionName
+group = "org.wordpress"

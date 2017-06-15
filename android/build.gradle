@@ -35,4 +35,4 @@ dependencies {
 }
 
 version = android.defaultConfig.versionName
-group = "org.m4a"
+group = "org.m4m"

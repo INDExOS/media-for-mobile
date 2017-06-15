@@ -21,9 +21,18 @@ import android.content.Intent;
 import android.media.MediaCodecInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.*;
+import android.view.SurfaceHolder;
+import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.m4m.android.AndroidMediaObjectFactory;
 import org.m4m.android.AudioFormatAndroid;
@@ -397,7 +406,8 @@ public class ComposerTranscodeCoreActivity extends ActivityWithTimeline implemen
     protected void setTranscodeParameters(org.m4m.MediaComposer mediaComposer) throws IOException {
 
         mediaComposer.addSourceFile(mediaUri1);
-        mediaComposer.setTargetFile(dstMediaPath);
+        int orientation = mediaFileInfo.getRotation();
+        mediaComposer.setTargetFile(dstMediaPath, orientation);
 
         configureVideoEncoder(mediaComposer, videoWidthOut, videoHeightOut);
         configureAudioEncoder(mediaComposer);

@@ -42,7 +42,7 @@ public interface IAndroidMediaObjectFactory {
 
     Resampler createAudioResampler(AudioFormat audioFormat);
 
-    Render createSink(String fileName, IProgressListener progressListener, ProgressTracker progressTracker) throws IOException;
+    Render createSink(String fileName, int orientationHint,  IProgressListener progressListener, ProgressTracker progressTracker) throws IOException;
 
     Render createSink(StreamingParameters StreamingParams, IProgressListener progressListener, ProgressTracker progressTracker);
 

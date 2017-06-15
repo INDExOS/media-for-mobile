@@ -68,7 +68,7 @@ public abstract class CapturePipeline {
      * @throws IOException if resource could not be created
      */
     public void setTargetFile(String fileName) throws IOException {
-        this.sink = androidMediaObjectFactory.createSink(fileName, progressListener, new ProgressTracker());
+        this.sink = androidMediaObjectFactory.createSink(fileName, orientaionDegrees, progressListener, new ProgressTracker());
     }
 
     /**

@@ -123,9 +123,11 @@ public class AndroidMediaObjectFactory implements IAndroidMediaObjectFactory {
     }
 
     @Override
-    public Render createSink(String fileName, IProgressListener progressListener, ProgressTracker progressTracker) throws IOException {
+    public Render createSink(String fileName, int orientationHint, IProgressListener progressListener, ProgressTracker progressTracker) throws IOException {
         if (fileName != null) {
-            return new MuxRender(new MediaMuxerPlugin(fileName, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4), progressListener, progressTracker);
+            MediaMuxerPlugin muxer = new MediaMuxerPlugin(fileName, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
+            muxer.setOrientationHint(orientationHint);
+            return new MuxRender(muxer, progressListener, progressTracker);
         }
         return null;
     }

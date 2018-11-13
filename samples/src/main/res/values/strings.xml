@@ -23,9 +23,9 @@
 
     <!-- for frameSize_spinner -->
     <string-array name="frame_size_values">
-        <item>640 x 480</item>
-        <item>1024 x 768</item>
-        <item>1280 x 720</item>
+        <item>480 x 640</item>
+        <item>768 x 1024</item>
+        <item>720 x 1280</item>
     </string-array>
 
     <!-- for videoBitRate_spinner -->

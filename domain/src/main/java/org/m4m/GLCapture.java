@@ -51,10 +51,9 @@ public class GLCapture extends CapturePipeline {
     @Override
     public void setTargetAudioFormat(AudioFormat mediaFormat) {
         super.setTargetAudioFormat(mediaFormat);
-        audioSource = androidMediaObjectFactory.createMicrophoneSource();
+    audioSource = androidMediaObjectFactory.createMicrophoneSource();
         audioSource.configure(mediaFormat.getAudioSampleRateInHz(), mediaFormat.getAudioChannelCount());
-    }
-
+}
     /**
      * Stops media capturing
      */

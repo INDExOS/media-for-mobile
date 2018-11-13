@@ -383,7 +383,8 @@ public class CameraCapturerActivity extends ActivityWithTimeline implements Came
         videoEffects.add(new GrayScaleEffect(0, factory.getEglUtil()));
         videoEffects.add(new SepiaEffect(0, factory.getEglUtil()));
         videoEffects.add(new InverseEffect(0, factory.getEglUtil()));
-        videoEffects.add(new TextOverlayEffect(0, factory.getEglUtil()));
+        Bitmap b = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_dcard);
+        videoEffects.add(new TextOverlayEffect(0, factory.getEglUtil(), b));
 
         if (camera_type == Camera.CameraInfo.CAMERA_FACING_FRONT) {
             checkWorkingEffects();

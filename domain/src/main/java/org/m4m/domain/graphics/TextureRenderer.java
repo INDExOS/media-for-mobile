@@ -34,7 +34,7 @@ public class TextureRenderer {
     private FloatBuffer triangleVertices;
 
     private static final String VERTEX_SHADER_SAMPLER =
-            "uniform mat4 uMVPMatrix;\n" +
+                    "uniform mat4 uMVPMatrix;\n" +
                     "uniform mat4 uSTMatrix;\n" +
                     "attribute vec4 aPosition;\n" +
                     "attribute vec4 aTextureCoord;\n" +

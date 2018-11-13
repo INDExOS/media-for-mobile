@@ -26,9 +26,13 @@ public interface IEglUtil {
             "attribute vec4 aPosition;\n" +
             "attribute vec4 aTextureCoord;\n" +
             "varying vec2 vTextureCoord;\n" +
+            "varying vec2 vOverlayCoord;\n" +
             "void main() {\n" +
-            "  gl_Position = uMVPMatrix * aPosition;\n" +
-            "  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n" +
+            "  mat4 rotation = mat4(vec4(0, -1, 0, 0), vec4(-1, 0, 0, 0), vec4(0, 0, 1, 0), vec4(0, 0, 0, 1));\n" +
+            "  vec2 coord    = (uSTMatrix * aTextureCoord).xy;\n" +
+            "  gl_Position   = uMVPMatrix * rotation * aPosition;\n" +
+            "  vTextureCoord = vec2(coord.s, 1.0 - coord.t);\n" +
+            "  vOverlayCoord = vec2(coord.t, coord.s);\n" +
             "}\n";
 
     static final String FRAGMENT_SHADER_OES =

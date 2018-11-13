@@ -20,6 +20,7 @@ import android.opengl.EGL14;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+
 import org.m4m.domain.Resolution;
 import org.m4m.domain.graphics.IEglUtil;
 import org.m4m.domain.graphics.Program;
@@ -27,11 +28,12 @@ import org.m4m.domain.graphics.TextureRenderer;
 import org.m4m.domain.graphics.TextureType;
 import org.m4m.domain.pipeline.TriangleVerticesCalculator;
 
+import java.nio.FloatBuffer;
+
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
-import java.nio.FloatBuffer;
 
 public class EglUtil implements IEglUtil {
     private static final int FLOAT_SIZE_BYTES = 4;
@@ -79,6 +81,7 @@ public class EglUtil implements IEglUtil {
         program.textureHandle = shaderProgram.getAttributeLocation("aTextureCoord");
         program.mvpMatrixHandle = shaderProgram.getAttributeLocation("uMVPMatrix");
         program.stMatrixHandle = shaderProgram.getAttributeLocation("uSTMatrix");
+
         return program;
     }
 
@@ -165,9 +168,12 @@ public class EglUtil implements IEglUtil {
         float scale[];
         switch (fillMode) {
             case PreserveAspectFit:
-                scale = scaleCalculator.getScale_PreserveAspectFit((int) angle, inputResolution.width(), inputResolution.height(), out.width(), out.height());
+                int testAngle = (int) 90;
+                scale = scaleCalculator.getScale_PreserveAspectFit(testAngle, inputResolution.width(), inputResolution.height(), out.width(), out.height());
+                GLES20.glUniformMatrix4fv(program.otMatrixHandle, 1, false, mvpMatrix, 0);
                 Matrix.scaleM(mvpMatrix, 0, scale[0], scale[1], 1);
-                Matrix.rotateM(mvpMatrix, 0, -angle, 0.f, 0.f, 1.f);
+//                Matrix.rotateM(mvpMatrix, 0, -testAngle, 0.f, 0.f, 1.f);
+
                 break;
             case PreserveAspectCrop:
                 scale = scaleCalculator.getScale_PreserveAspectCrop((int) angle, inputResolution.width(), inputResolution.height(), out.width(), out.height());

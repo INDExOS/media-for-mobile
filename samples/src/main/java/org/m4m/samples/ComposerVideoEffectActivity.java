@@ -76,7 +76,7 @@ public class ComposerVideoEffectActivity extends ActivityWithTimeline implements
         list.add("Sepia");
         list.add("Grayscale");
         list.add("Inverse");
-        list.add("Text Overlay");
+        list.add("Dcard Overlay");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

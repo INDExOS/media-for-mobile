@@ -20,6 +20,7 @@ public class Program {
     public int programHandle;
     public int positionHandle;
     public int textureHandle;
+    public int otMatrixHandle;
     public int mvpMatrixHandle;
     public int stMatrixHandle;
 }

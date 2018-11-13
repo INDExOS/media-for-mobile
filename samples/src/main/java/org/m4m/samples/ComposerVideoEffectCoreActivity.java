@@ -16,7 +16,10 @@
 
 package org.m4m.samples;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+
 import org.m4m.IVideoEffect;
 import org.m4m.MediaComposer;
 import org.m4m.Uri;
@@ -47,7 +50,7 @@ public class ComposerVideoEffectCoreActivity extends ComposerTranscodeCoreActivi
     @Override
     protected void setTranscodeParameters(MediaComposer mediaComposer) throws IOException {
         mediaComposer.addSourceFile(mediaUri1);
-        mediaComposer.setTargetFile(dstMediaPath);
+        mediaComposer.setTargetFile(dstMediaPath, 0);
 
         configureVideoEncoder(mediaComposer, videoWidthOut, videoHeightOut);
         configureAudioEncoder(mediaComposer);
@@ -69,7 +72,8 @@ public class ComposerVideoEffectCoreActivity extends ComposerTranscodeCoreActivi
                 effect = new InverseEffect(0, factory.getEglUtil());
                 break;
             case 3:
-                effect = new TextOverlayEffect(0, factory.getEglUtil());
+                Bitmap b = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_dcard);
+                effect = new TextOverlayEffect(0, factory.getEglUtil(), b);
                 break;
             default:
                 break;
@@ -95,7 +99,7 @@ public class ComposerVideoEffectCoreActivity extends ComposerTranscodeCoreActivi
             case 2:
                 return "Inverse";
             case 3:
-                return "Text Overlay";
+                return "Dcard Overlay";
             default:
                 return "Unknown";
         }

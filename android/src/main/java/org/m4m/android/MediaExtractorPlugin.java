@@ -19,10 +19,12 @@ package org.m4m.android;
 import android.content.Context;
 import android.media.MediaExtractor;
 import android.media.MediaMetadataRetriever;
+
 import org.m4m.Uri;
 import org.m4m.domain.IMediaExtractor;
 import org.m4m.domain.MediaFormat;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -106,8 +108,9 @@ public class MediaExtractorPlugin implements IMediaExtractor {
     @Override
     public int getRotation() {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        File file = new File(path);
         if (path != null) {
-            retriever.setDataSource(path);
+            retriever.setDataSource(file.getAbsolutePath());
         } else if (fileDescriptor != null) {
             retriever.setDataSource(fileDescriptor);
         } else if (uri != null) {

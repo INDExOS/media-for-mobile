@@ -209,7 +209,7 @@ public class TimelineItem extends RelativeLayout implements View.OnClickListener
             case 0:  return baseName + "sepia";
             case 1:  return baseName + "grayscale";
             case 2:  return baseName + "inverse";
-            case 3:  return baseName + "text_overlay";
+            case 3:  return baseName + "overlay";
             default: return baseName + "unknown";
         }    	
     }

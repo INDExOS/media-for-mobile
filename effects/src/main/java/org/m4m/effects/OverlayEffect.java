@@ -30,8 +30,8 @@ public abstract class OverlayEffect extends VideoEffect {
     private int[] textures = new int[1];
 
     Bitmap bitmap = null;
-    int inputBitmapWidth = 1280; // default resolution
-    int inputBitmapHeight = 720;
+    int inputBitmapWidth = 720; // default resolution
+    int inputBitmapHeight = 1280;
 
 
     public OverlayEffect(int angle, IEglUtil eglUtil) {
@@ -44,11 +44,12 @@ public abstract class OverlayEffect extends VideoEffect {
         return "#extension GL_OES_EGL_image_external : require\n" +
                 "precision mediump float;\n" +
                 "varying vec2 vTextureCoord;\n" +
+                "varying vec2 vOverlayCoord;\n" +
                 "uniform samplerExternalOES sTexture;\n" +
                 "uniform sampler2D oTexture;\n" +
                 "void main() {\n" +
                 "  vec4 bg_color = texture2D(sTexture, vTextureCoord);\n" +
-                "  vec4 fg_color = texture2D(oTexture, vTextureCoord);\n" +
+                "  vec4 fg_color = texture2D(oTexture, vOverlayCoord);\n" +
                 "  float colorR = (1.0 - fg_color.a) * bg_color.r + fg_color.a * fg_color.r;\n" +
                 "  float colorG = (1.0 - fg_color.a) * bg_color.g + fg_color.a * fg_color.g;\n" +
                 "  float colorB = (1.0 - fg_color.a) * bg_color.b + fg_color.a * fg_color.b;\n" +
@@ -70,11 +71,11 @@ public abstract class OverlayEffect extends VideoEffect {
 
     @Override
     protected void addEffectSpecific() {
-        if (bitmap.getWidth()!= inputResolution.width()) {
-            bitmap = Bitmap.createBitmap(inputResolution.width(), inputResolution.height(), Bitmap.Config.ARGB_8888);
-        } else if (bitmap.getHeight() != inputResolution.height()) {
-            bitmap = Bitmap.createBitmap(inputResolution.width(), inputResolution.height(), Bitmap.Config.ARGB_8888);
-        }
+//        if (bitmap.getWidth()!= inputResolution.width()) {
+//            bitmap = Bitmap.createBitmap(inputResolution.width(), inputResolution.height(), Bitmap.Config.ARGB_8888);
+//        } else if (bitmap.getHeight() != inputResolution.height()) {
+//            bitmap = Bitmap.createBitmap(inputResolution.width(), inputResolution.height(), Bitmap.Config.ARGB_8888);
+//        }
 
         bitmap.eraseColor(Color.argb(0, 0, 0, 0));
 

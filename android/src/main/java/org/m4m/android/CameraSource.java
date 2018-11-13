@@ -73,7 +73,7 @@ public class CameraSource extends org.m4m.domain.CameraSource {
         private FloatBuffer triangleVertices;
 
         private static final String VERTEX_SHADER =
-                "uniform mat4 uMVPMatrix;\n" +
+                        "uniform mat4 uMVPMatrix;\n" +
                         "uniform mat4 uSTMatrix;\n" +
                         "attribute vec4 aPosition;\n" +
                         "attribute vec4 aTextureCoord;\n" +

@@ -12,7 +12,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 18
@@ -29,8 +29,8 @@ android {
 }
 
 dependencies {
-    compile project(':domain')
-    compile project(':android')
+    implementation project(':domain')
+    implementation project(':android')
 }
 
 group = "org.m4m"

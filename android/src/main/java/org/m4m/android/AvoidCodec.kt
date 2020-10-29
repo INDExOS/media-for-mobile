@@ -20,8 +20,8 @@ enum class AvoidCodec(var codecPartialName: String) {
 
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
-            }.first {
-                isNotContainsAvoidCodec(it.name)
+            }.first { codecInfo ->
+                isNotContainsAvoidCodec(codecInfo.name)
             }.let { codecInfo ->
                 try {
                     return MediaCodec.createByCodecName(codecInfo.name)

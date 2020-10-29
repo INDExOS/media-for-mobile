@@ -21,7 +21,7 @@ enum class AvoidCodec(var codecPartialName: String) {
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
             }.first {
-                !containsShouldAvoidCodec(it.name)
+                isNotContainsAvoidCodec(it.name)
             }.let { codecInfo ->
                 try {
                     return MediaCodec.createByCodecName(codecInfo.name)
@@ -34,14 +34,14 @@ enum class AvoidCodec(var codecPartialName: String) {
             return null
         }
 
-        private fun containsShouldAvoidCodec(codecName: String): Boolean {
+        private fun isNotContainsAvoidCodec(codecName: String): Boolean {
             values().forEach { avoidCodec ->
                 if (codecName.contains(avoidCodec.codecPartialName, ignoreCase = true)) {
-                    return true
+                    return false
                 }
             }
 
-            return false
+            return true
         }
     }
 

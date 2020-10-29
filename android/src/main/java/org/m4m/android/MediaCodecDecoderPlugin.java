@@ -24,7 +24,6 @@ import org.m4m.domain.ISurface;
 import org.m4m.domain.ISurfaceWrapper;
 import org.m4m.domain.MediaFormat;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 public abstract class MediaCodecDecoderPlugin implements IMediaCodec {
@@ -38,12 +37,14 @@ public abstract class MediaCodecDecoderPlugin implements IMediaCodec {
 
     public MediaCodecDecoderPlugin(String mime) {
 
-        try {
-            this.mediaCodec = MediaCodec.createDecoderByType(mime);
-            init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+        this.mediaCodec = AvoidCodec.Companion.shouldUseDecoder(mime);
+//            this.mediaCodec = MediaCodec.createDecoderByType(mime);
+        init();
+//        } catch (IOException e) {
+//            LogUtil.stackTrace(e);
+//            e.printStackTrace();
+//        }
     }
 
     private void init() {

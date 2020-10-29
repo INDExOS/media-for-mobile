@@ -11,54 +11,32 @@ import java.io.IOException
  * 現在はSamsung製のコーデックで確認したが、他にもベンダー独自のコーデックを仕込んでる可能性があるため
  * enumで列挙する
  */
-enum class AvoidCodec(var codecName: String) {
+enum class AvoidCodec(var codecPartialName: String) {
     // Samsung社製のコーデック
     EXYNOS("Exynos");
 
     companion object {
-        fun shouldUseDecoder(mimeType: String): MediaCodec? {
+        fun avoidBlackListCodec(mimeType: String): MediaCodec? {
 
-            MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.forEach { codecInfo ->
-                codecInfo.supportedTypes.filter {
-                    containsShouldAvoidCodec(it)
-                }.first {
-                    !it.equals(mimeType, ignoreCase = true)
-                }.let {
-                    try {
-                        return MediaCodec.createDecoderByType(it)
-                    } catch (e: IOException) {
-                        LogUtil.stackTrace(e)
-                        e.printStackTrace()
-                    }
+            MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
+                codecInfo.supportedTypes.contains(mimeType)
+            }.first {
+                !containsShouldAvoidCodec(it.name)
+            }.let { codecInfo ->
+                try {
+                    return MediaCodec.createByCodecName(codecInfo.name)
+                } catch (e: IOException) {
+                    LogUtil.stackTrace(e)
+                    e.printStackTrace()
                 }
             }
 
             return null
         }
 
-        fun shouldUseEncoder(mimeType: String): MediaCodec? {
-
-            MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.forEach { codecInfo ->
-                codecInfo.supportedTypes.filter {
-                    containsShouldAvoidCodec(it)
-                }.first {
-                    !it.equals(mimeType, ignoreCase = true)
-                }.let {
-                    try {
-                        return MediaCodec.createEncoderByType(it)
-                    } catch (e: IOException) {
-                        LogUtil.stackTrace(e)
-                        e.printStackTrace()
-                    }
-                }
-            }
-
-            return null
-        }
-
-        private fun containsShouldAvoidCodec(codecType: String): Boolean {
+        private fun containsShouldAvoidCodec(codecName: String): Boolean {
             values().forEach { avoidCodec ->
-                if (codecType.contains(avoidCodec.codecName, ignoreCase = true)) {
+                if (codecName.contains(avoidCodec.codecPartialName, ignoreCase = true)) {
                     return true
                 }
             }

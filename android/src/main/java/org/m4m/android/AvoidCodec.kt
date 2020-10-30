@@ -16,12 +16,12 @@ enum class AvoidCodec(var codecPartialName: String) {
     EXYNOS("Exynos");
 
     companion object {
-        fun avoidBlackListCodec(mimeType: String): MediaCodec? {
+        fun createCodecWhileAvoidingBlackListCodec(mimeType: String): MediaCodec? {
 
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
             }.first { codecInfo ->
-                isNotContainsAvoidCodec(codecInfo.name)
+                isNotMatchingAvoidCodec(codecInfo.name)
             }.let { codecInfo ->
                 try {
                     return MediaCodec.createByCodecName(codecInfo.name)
@@ -34,7 +34,7 @@ enum class AvoidCodec(var codecPartialName: String) {
             return null
         }
 
-        private fun isNotContainsAvoidCodec(codecName: String): Boolean {
+        private fun isNotMatchingAvoidCodec(codecName: String): Boolean {
             values().forEach { avoidCodec ->
                 if (codecName.contains(avoidCodec.codecPartialName, ignoreCase = true)) {
                     return false

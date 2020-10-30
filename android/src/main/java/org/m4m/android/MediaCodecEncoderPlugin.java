@@ -52,7 +52,7 @@ public class MediaCodecEncoderPlugin implements IMediaCodec {
 //        try {
         this.eglUtil = eglUtil;
         init();
-        this.mediaCodec = AvoidCodec.Companion.avoidBlackListCodec(mime);
+        this.mediaCodec = AvoidCodec.Companion.createCodecWhileAvoidingBlackListCodec(mime);
 
 //        } catch (IOException e) {
 //            e.printStackTrace();

@@ -11,15 +11,36 @@ import java.io.IOException
  * 現在はSamsung製のコーデックで確認したが、他にもベンダー独自のコーデックを仕込んでる可能性があるため
  * enumで列挙する
  */
+@Suppress("SpellCheckingInspection", "unused")
 enum class AvoidCodec(var codecPartialName: String) {
     // Samsung社製のコーデック
     EXYNOS("Exynos");
 
     companion object {
-        fun createCodecWhileAvoidingBlackListCodec(mimeType: String): MediaCodec? {
+        @JvmStatic
+        fun createDecoderWhileAvoidingBlackListCodec(mimeType: String): MediaCodec? {
 
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
+            }.first { codecInfo ->
+                isNotMatchingAvoidCodec(codecInfo.name)
+            }.let { codecInfo ->
+                try {
+                    return MediaCodec.createByCodecName(codecInfo.name)
+                } catch (e: IOException) {
+                    LogUtil.stackTrace(e)
+                    e.printStackTrace()
+                }
+            }
+
+            return null
+        }
+
+        @JvmStatic
+        fun createEncoderWhileAvoidingBlackList(mimeType: String): MediaCodec? {
+
+            MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
+                codecInfo.supportedTypes.contains(mimeType) and codecInfo.isEncoder
             }.first { codecInfo ->
                 isNotMatchingAvoidCodec(codecInfo.name)
             }.let { codecInfo ->

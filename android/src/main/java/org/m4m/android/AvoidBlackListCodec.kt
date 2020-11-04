@@ -11,7 +11,7 @@ import java.io.IOException
  * 現在はSamsung製のコーデックで確認したが、他にもベンダー独自のコーデックを仕込んでる可能性があるため
  * 逐次リストに定義する
  */
-class AvoidCodec {
+class AvoidBlackListCodec {
 
     companion object {
 
@@ -25,7 +25,7 @@ class AvoidCodec {
         )
 
         @JvmStatic
-        fun createDecoderWhileAvoidingBlackListCodec(mimeType: String): MediaCodec? {
+        fun createDecoder(mimeType: String): MediaCodec? {
 
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
@@ -44,7 +44,7 @@ class AvoidCodec {
         }
 
         @JvmStatic
-        fun createEncoderWhileAvoidingBlackList(mimeType: String): MediaCodec? {
+        fun createEncoder(mimeType: String): MediaCodec? {
 
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType) and codecInfo.isEncoder

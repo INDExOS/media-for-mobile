@@ -49,7 +49,7 @@ public class MediaCodecEncoderPlugin implements IMediaCodec {
     public MediaCodecEncoderPlugin(String mime, IEglUtil eglUtil) {
         this.eglUtil = eglUtil;
         init();
-        this.mediaCodec = AvoidCodec.createEncoderWhileAvoidingBlackList(mime);
+        this.mediaCodec = AvoidBlackListCodec.createEncoder(mime);
     }
 
     private void init() {

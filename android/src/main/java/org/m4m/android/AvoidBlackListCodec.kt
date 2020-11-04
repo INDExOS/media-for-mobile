@@ -4,6 +4,7 @@ import android.media.MediaCodec
 import android.media.MediaCodecList
 import jp.studist.teachme_biz.controller.util.LogUtil
 import java.io.IOException
+import kotlin.jvm.Throws
 
 /**
  * 一部のコーデックにおいてエンコードまたはデコード、その他の処理が
@@ -25,41 +26,31 @@ class AvoidBlackListCodec {
         )
 
         @JvmStatic
-        fun createDecoder(mimeType: String): MediaCodec? {
+        @Throws(IOException::class)
+        fun createDecoder(mimeType: String): MediaCodec {
 
-            MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
+            return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
             }.first { codecInfo ->
                 !isMatchingBlackList(codecInfo.name)
             }.let { codecInfo ->
-                try {
-                    return MediaCodec.createByCodecName(codecInfo.name)
-                } catch (e: IOException) {
-                    LogUtil.stackTrace(e)
-                    e.printStackTrace()
-                }
+                MediaCodec.createByCodecName(codecInfo.name)
             }
 
-            return null
         }
 
         @JvmStatic
-        fun createEncoder(mimeType: String): MediaCodec? {
+        @Throws(IOException::class)
+        fun createEncoder(mimeType: String): MediaCodec {
 
-            MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
+            return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType) and codecInfo.isEncoder
             }.first { codecInfo ->
                 !isMatchingBlackList(codecInfo.name)
             }.let { codecInfo ->
-                try {
-                    return MediaCodec.createByCodecName(codecInfo.name)
-                } catch (e: IOException) {
-                    LogUtil.stackTrace(e)
-                    e.printStackTrace()
-                }
+                MediaCodec.createByCodecName(codecInfo.name)
             }
 
-            return null
         }
 
         private fun isMatchingBlackList(codecName: String): Boolean {

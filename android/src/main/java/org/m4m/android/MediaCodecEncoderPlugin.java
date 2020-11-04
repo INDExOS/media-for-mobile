@@ -32,6 +32,8 @@ import org.m4m.domain.graphics.IEglUtil;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import jp.studist.teachme_biz.controller.util.LogUtil;
+
 public class MediaCodecEncoderPlugin implements IMediaCodec {
     private MediaCodec mediaCodec;
 
@@ -49,7 +51,12 @@ public class MediaCodecEncoderPlugin implements IMediaCodec {
     public MediaCodecEncoderPlugin(String mime, IEglUtil eglUtil) {
         this.eglUtil = eglUtil;
         init();
-        this.mediaCodec = AvoidBlackListCodec.createEncoder(mime);
+        try {
+            this.mediaCodec = AvoidBlackListCodec.createEncoder(mime);
+        } catch (IOException e) {
+            LogUtil.stackTrace(e);
+            e.printStackTrace();
+        }
     }
 
     private void init() {

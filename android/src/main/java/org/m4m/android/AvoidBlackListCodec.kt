@@ -2,7 +2,6 @@ package org.m4m.android
 
 import android.media.MediaCodec
 import android.media.MediaCodecList
-import jp.studist.teachme_biz.controller.util.LogUtil
 import java.io.IOException
 import kotlin.jvm.Throws
 

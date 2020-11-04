@@ -9,14 +9,21 @@ import java.io.IOException
  * 一部のコーデックにおいてエンコードまたはデコード、その他の処理が
  * 正常に動作しない事象を確認したため、そのコーデックをブラックリストとして定義。
  * 現在はSamsung製のコーデックで確認したが、他にもベンダー独自のコーデックを仕込んでる可能性があるため
- * enumで列挙する
+ * 逐次リストに定義する
  */
-@Suppress("SpellCheckingInspection", "unused")
-enum class AvoidCodec(var codecPartialName: String) {
-    // Samsung社製のコーデック
-    EXYNOS("Exynos");
+class AvoidCodec {
 
     companion object {
+
+        /**
+         * ブラックリストとして選択しないコーデック名の定義
+         * ユニークに判断可能であれば部分的な名前で定義可能
+         */
+        private val blackListCodec = listOf(
+                // Samsung社製のコーデック
+                "Exynos"
+        )
+
         @JvmStatic
         fun createDecoderWhileAvoidingBlackListCodec(mimeType: String): MediaCodec? {
 
@@ -56,8 +63,8 @@ enum class AvoidCodec(var codecPartialName: String) {
         }
 
         private fun isNotMatchingAvoidCodec(codecName: String): Boolean {
-            values().forEach { avoidCodec ->
-                if (codecName.contains(avoidCodec.codecPartialName, ignoreCase = true)) {
+            blackListCodec.forEach { targetCodec ->
+                if (codecName.contains(targetCodec, ignoreCase = true)) {
                     return false
                 }
             }

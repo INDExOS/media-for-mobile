@@ -30,7 +30,7 @@ class AvoidCodec {
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType)
             }.first { codecInfo ->
-                isNotMatchingAvoidCodec(codecInfo.name)
+                !isMatchingBlackList(codecInfo.name)
             }.let { codecInfo ->
                 try {
                     return MediaCodec.createByCodecName(codecInfo.name)
@@ -49,7 +49,7 @@ class AvoidCodec {
             MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType) and codecInfo.isEncoder
             }.first { codecInfo ->
-                isNotMatchingAvoidCodec(codecInfo.name)
+                !isMatchingBlackList(codecInfo.name)
             }.let { codecInfo ->
                 try {
                     return MediaCodec.createByCodecName(codecInfo.name)
@@ -62,14 +62,14 @@ class AvoidCodec {
             return null
         }
 
-        private fun isNotMatchingAvoidCodec(codecName: String): Boolean {
+        private fun isMatchingBlackList(codecName: String): Boolean {
             blackListCodec.forEach { targetCodec ->
                 if (codecName.contains(targetCodec, ignoreCase = true)) {
-                    return false
+                    return true
                 }
             }
 
-            return true
+            return false
         }
     }
 

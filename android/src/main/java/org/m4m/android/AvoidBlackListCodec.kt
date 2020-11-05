@@ -29,7 +29,7 @@ class AvoidBlackListCodec {
         fun createDecoder(mimeType: String): MediaCodec {
 
             return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
-                codecInfo.supportedTypes.contains(mimeType)
+                codecInfo.supportedTypes.contains(mimeType) and !codecInfo.isEncoder
             }.first { codecInfo ->
                 !isMatchingBlackList(codecInfo.name)
             }.let { codecInfo ->

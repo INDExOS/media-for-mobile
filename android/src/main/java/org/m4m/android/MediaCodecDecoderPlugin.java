@@ -41,7 +41,11 @@ public abstract class MediaCodecDecoderPlugin implements IMediaCodec {
     public MediaCodecDecoderPlugin(String mime) {
         if (this instanceof MediaCodecVideoDecoderPlugin) {
             try {
-                this.mediaCodec = AvoidBlackListCodec.createDecoder(mime);
+                if (AvoidBlackListCodec.hasBlackListDecoder(mime)) {
+                    this.mediaCodec = AvoidBlackListCodec.createDecoder(mime);
+                } else {
+                    this.mediaCodec = MediaCodec.createDecoderByType(mime);
+                }
             } catch (IOException e) {
                 LogUtil.stackTrace(e);
                 e.printStackTrace();

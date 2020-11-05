@@ -52,6 +52,24 @@ class AvoidBlackListCodec {
 
         }
 
+        @JvmStatic
+        fun hasBlackListEncoder(mimeType: String): Boolean {
+            return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
+                codecInfo.supportedTypes.contains(mimeType) and codecInfo.isEncoder
+            }.any { codecInfo ->
+                isMatchingBlackList(codecInfo.name)
+            }
+        }
+
+        @JvmStatic
+        fun hasBlackListDecoder(mimeType: String): Boolean {
+            return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
+                codecInfo.supportedTypes.contains(mimeType) and !codecInfo.isEncoder
+            }.any { codecInfo ->
+                isMatchingBlackList(codecInfo.name)
+            }
+        }
+
         private fun isMatchingBlackList(codecName: String): Boolean {
             blackListCodec.forEach { targetCodec ->
                 if (codecName.contains(targetCodec, ignoreCase = true)) {

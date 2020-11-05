@@ -59,7 +59,6 @@ public class MediaCodecEncoderPlugin implements IMediaCodec {
             }
         } catch (IOException e) {
             LogUtil.stackTrace(e);
-            e.printStackTrace();
         }
     }
 

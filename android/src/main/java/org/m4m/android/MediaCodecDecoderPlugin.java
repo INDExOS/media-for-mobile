@@ -48,14 +48,12 @@ public abstract class MediaCodecDecoderPlugin implements IMediaCodec {
                 }
             } catch (IOException e) {
                 LogUtil.stackTrace(e);
-                e.printStackTrace();
             }
         } else {
             try {
                 this.mediaCodec = MediaCodec.createDecoderByType(mime);
             } catch (IOException e) {
                 LogUtil.stackTrace(e);
-                e.printStackTrace();
             }
         }
         init();

@@ -27,7 +27,6 @@ class AvoidBlackListCodec {
         @JvmStatic
         @Throws(IOException::class)
         fun createDecoder(mimeType: String): MediaCodec {
-
             return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType) and !codecInfo.isEncoder
             }.first { codecInfo ->
@@ -35,13 +34,11 @@ class AvoidBlackListCodec {
             }.let { codecInfo ->
                 MediaCodec.createByCodecName(codecInfo.name)
             }
-
         }
 
         @JvmStatic
         @Throws(IOException::class)
         fun createEncoder(mimeType: String): MediaCodec {
-
             return MediaCodecList(MediaCodecList.ALL_CODECS).codecInfos.filter { codecInfo ->
                 codecInfo.supportedTypes.contains(mimeType) and codecInfo.isEncoder
             }.first { codecInfo ->
@@ -49,7 +46,6 @@ class AvoidBlackListCodec {
             }.let { codecInfo ->
                 MediaCodec.createByCodecName(codecInfo.name)
             }
-
         }
 
         @JvmStatic

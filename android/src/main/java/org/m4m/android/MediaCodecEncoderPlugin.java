@@ -21,17 +21,18 @@ import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.opengl.EGLContext;
 
-import org.m4m.domain.graphics.IEglUtil;
-
 import org.m4m.domain.IEglContext;
 import org.m4m.domain.IMediaCodec;
 import org.m4m.domain.ISurface;
 import org.m4m.domain.ISurfaceWrapper;
 import org.m4m.domain.IWrapper;
 import org.m4m.domain.MediaFormat;
+import org.m4m.domain.graphics.IEglUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+
+import jp.studist.teachme_biz.controller.util.LogUtil;
 
 public class MediaCodecEncoderPlugin implements IMediaCodec {
     private MediaCodec mediaCodec;
@@ -48,14 +49,16 @@ public class MediaCodecEncoderPlugin implements IMediaCodec {
         init();
     }
     public MediaCodecEncoderPlugin(String mime, IEglUtil eglUtil) {
-
+        this.eglUtil = eglUtil;
+        init();
         try {
-            this.eglUtil = eglUtil;
-            init();
-            this.mediaCodec = MediaCodec.createEncoderByType(mime);
-
+            if (AvoidBlackListCodec.hasBlackListEncoder(mime)) {
+                this.mediaCodec = AvoidBlackListCodec.createEncoder(mime);
+            } else {
+                this.mediaCodec = MediaCodec.createEncoderByType(mime);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtil.stackTrace(e);
         }
     }
 

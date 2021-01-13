@@ -155,6 +155,7 @@ public class MediaSource implements IMediaSource {
     public Iterable<MediaFormat> getMediaFormats() {
         LinkedList<MediaFormat> result = new LinkedList<MediaFormat>();
         for (int i = 0; i < mediaExtractor.getTrackCount(); i++) {
+            if (mediaExtractor.getTrackFormat(i) == null) continue;
             result.add(mediaExtractor.getTrackFormat(i));
         }
         return result;
@@ -228,7 +229,8 @@ public class MediaSource implements IMediaSource {
         long maxDuration = 0;
         int i = 0;
         for (MediaFormat ignored : getMediaFormats()) {
-            if (mediaExtractor.getTrackFormat(i).getDuration() > maxDuration) {
+            if (mediaExtractor.getTrackFormat(i) != null
+            && (mediaExtractor.getTrackFormat(i).getDuration() > maxDuration)) {
                 maxDuration = mediaExtractor.getTrackFormat(i).getDuration();
             }
             i++;
@@ -268,8 +270,12 @@ public class MediaSource implements IMediaSource {
     }
 
     private boolean isVideoTrack(int trackId) {
-        String mimeType = mediaExtractor.getTrackFormat(trackId).getMimeType();
-        return mimeType.startsWith("video");
+        if (mediaExtractor.getTrackFormat(trackId) != null) {
+            String mimeType = mediaExtractor.getTrackFormat(trackId).getMimeType();
+            return mimeType.startsWith("video");
+        } else {
+            return false;
+        }
     }
 
     @Override

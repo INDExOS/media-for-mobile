@@ -19,14 +19,18 @@ package org.m4m.domain;
 import org.m4m.IProgressListener;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeoutException;
 
 public class CommandProcessor implements ICommandProcessor {
     //Logger log = Logger.getLogger(getClass().getSimpleName());
+
+    private final long TIME_OUT_SEC_IN_MILLIS = 10000;
 
     private final ArrayList<OutputInputPair> pairs = new ArrayList<OutputInputPair>();
     private final PairQueueSpecification pairQueueSpecification = new PairQueueSpecification(new MatchingCommands());
     private final IProgressListener progressListener;
     private volatile boolean isPaused = false;
+    private long lastProcessedTime = 0;
 
     private static final MatchingCommands matchingCommands = new MatchingCommands();
     private boolean stopped = false;
@@ -46,7 +50,7 @@ public class CommandProcessor implements ICommandProcessor {
     }
 
     @Override
-    public void process() {
+    public void process() throws TimeoutException {
         for (OutputInputPair pair : pairs) {
             pair.output.fillCommandQueues();
             pair.input.fillCommandQueues();
@@ -55,6 +59,9 @@ public class CommandProcessor implements ICommandProcessor {
         while (!stopped) {
             for (OutputInputPair pair : pairs) {
                 processCommandPairs(pair);
+            }
+            if (System.currentTimeMillis() - lastProcessedTime > TIME_OUT_SEC_IN_MILLIS) {
+                throw new TimeoutException();
             }
         }
         //log.info("No pairs to process, exit.");
@@ -72,7 +79,9 @@ public class CommandProcessor implements ICommandProcessor {
             Pair<Command, Integer> outputCommand = outputCommandQueue.first();
             Pair<Command, Integer> inputCommand = inputCommandQueue.first();
 
-            if(outputCommand == null || inputCommand == null) continue;
+            if (outputCommand == null || inputCommand == null) continue;
+
+            lastProcessedTime = System.currentTimeMillis();
 
             if (inputCommand.left == Command.NextPair) {
                 inputCommandQueue.dequeue();

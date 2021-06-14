@@ -16,8 +16,10 @@
 
 package org.m4m.domain;
 
+import java.util.concurrent.TimeoutException;
+
 public interface ICommandProcessor {
-    void process();
+    void process() throws TimeoutException;
 
     void add(OutputInputPair pair);
 

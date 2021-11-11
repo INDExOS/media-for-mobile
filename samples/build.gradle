@@ -19,8 +19,13 @@ android {
     }
 }
 
-dependencies {
-    compile project(':domain')
-    compile project(':android')
-    compile project(':effects')
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        compile project(':domain')
+        compile project(':android')
+        compile project(':effects')
+    }
 }

@@ -25,8 +25,8 @@ allprojects {
         mavenCentral()
     }
     dependencies {
-        compile project(':domain')
-        compile project(':android')
-        compile project(':effects')
+        implementation project(':domain')
+        implementation project(':android')
+        implementation project(':effects')
     }
 }

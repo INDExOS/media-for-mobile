@@ -32,8 +32,8 @@ android {
 }
 
 dependencies {
-    compile project(':domain')
-    testCompile 'junit:junit:4.12'
+    implemantation project(':domain')
+    testImplementation 'junit:junit:4.12'
 }
 
 version = android.defaultConfig.versionName

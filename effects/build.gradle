@@ -30,8 +30,8 @@ android {
 }
 
 dependencies {
-    compile project(':domain')
-    compile project(':android')
+    implementation project(':domain')
+    implementation project(':android')
 }
 
 group = "org.m4m"

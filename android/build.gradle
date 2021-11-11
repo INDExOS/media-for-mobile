@@ -6,6 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha12'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0-RC2"
     }
 }
 

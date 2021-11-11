@@ -12,7 +12,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implemantation project(':domain')
+    implementation project(':domain')
     testImplementation 'junit:junit:4.12'
 }
 

@@ -4,8 +4,6 @@
           android:versionCode="1"
           android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="18"/>
-
     <uses-feature
             android:glEsVersion="0x00020000"
             android:required="true"/>

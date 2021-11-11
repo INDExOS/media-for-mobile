@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "org.m4m.samples"
@@ -19,8 +18,14 @@ android {
     }
 }
 
-dependencies {
-    compile project(':domain')
-    compile project(':android')
-    compile project(':effects')
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        implementation project(':domain')
+        implementation project(':android')
+        implementation project(':effects')
+    }
 }

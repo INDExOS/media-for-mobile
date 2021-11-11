@@ -1,18 +1,18 @@
 buildscript {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0-RC2"
     }
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 18
@@ -28,9 +28,15 @@ android {
     }
 }
 
-dependencies {
-    compile project(':domain')
-    compile project(':android')
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        implementation project(':domain')
+        implementation project(':android')
+    }
 }
 
 group = "org.m4m"
